@@ -1,10 +1,10 @@
 jQuery(function($){
-    var fugures_types = {
-        solo : {width:1, height: 1},
-        hor : {width:2, height: 1},
-        vert : {width:1, height: 2},
-        target : {width:2, height: 2}
-    };
+//    var fugures_types = {
+//        solo : {width:1, height: 1},
+//        hor : {width:2, height: 1},
+//        vert : {width:1, height: 2},
+//        target : {width:2, height: 2}
+//    };
     var sets = {
         set1: [
 //            {type:"vert", left: 1, top: 1},
@@ -49,6 +49,7 @@ jQuery(function($){
 
     var board = new Object;
     board = {
+        slide_duration : 150,
         size :{x:4,y:5},
         point_size : 100,
         colors: {
@@ -101,6 +102,18 @@ jQuery(function($){
         this.draw();
     };
 
+    board.calc_css_top_left = function(){
+
+    };
+
+    board.find_figure = function(name){
+        for (i in this.figures){
+            if (this.figures[i].name == name){
+                return this.figures[i];
+            }
+        }
+    }
+
     board.move = function(f_name,dest){
         var tmp = [],tmp_y=[];
 
@@ -133,11 +146,13 @@ jQuery(function($){
                 //check if figure was moved on board's border
                 if (f.left <= 0 || f.left + f.width - 1 > board_size_x
                         || f.top <= 0 || f.top + f.height - 1 > board_size_y)  {
-                    console.log('hit');
+//                    console.log('hit');
+                    //animate-move
                     return false;
                 }
             }
-            for (var j = f.left - 1; j < f.left + f.width - 1; j++)
+            //detecting if our figure was moved on another by counting how many figures are in every board's cell
+            for (var j = f.left - 1; j < f.left + f.width - 1; j++){
                 for (var k = f.top - 1; k < f.top + f.height - 1; k++){
                     points += 1;
                     tmp[j][k] += 1;
@@ -145,10 +160,21 @@ jQuery(function($){
                         return false;
                     }
                 }
+            }
         }
 
         //good
         this.figures = figures_moved;
+
+        //animate figure moving
+        var f_moved = this.find_figure(f_name);
+        $('#'+f_moved.name).animate(
+            {
+                'left' : this.point_size * (f_moved.left - 1) - 2,
+                'top' : this.point_size * (f_moved.top - 1) - 2
+            },
+            this.slide_duration
+        );
 
         setCookie(this.current, $.toJSON(figures_moved), 30);
 
@@ -188,7 +214,7 @@ jQuery(function($){
             var dx = e.clientX - last_x;
             var dy = e.clientY - last_y;
 //            console.log(dx + ' ' + dy);
-            if (Math.abs(dx) > 50 || Math.abs(dy) > 50){
+            if (Math.abs(dx) > min_delta || Math.abs(dy) > min_delta){
                 var dest = null;
                 if (Math.abs(dx) / Math.abs(dy) > 1.2){ //should move by X axis
                     dest = (dx < 0) ? 'left' : 'right';
@@ -198,7 +224,7 @@ jQuery(function($){
                 }
                 if (dest){
                     board.move($(figure).attr('id'),dest);
-                    board.draw();
+//                    board.draw();
                 }
             }
         }
