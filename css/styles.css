@@ -1,0 +1,134 @@
+.clr {
+    clear: both
+}
+
+#board {
+    width: 500px;
+    height: 600px;
+    position: relative;
+    margin: 50px auto;
+}
+
+#board .inner {
+    width: 398px;
+    height: 498px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    background: white
+}
+
+.figure {
+    position: absolute;
+    border: 2px solid black;
+}
+
+#board_select {
+    width: 500px;
+    margin: 10px auto
+}
+
+.button {
+    border: 1px solid black;
+    float: left;
+    margin: 0px 50px;
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background: white
+}
+
+.button.active {
+    background: #ccc
+}
+
+#reset {
+    padding: 15px 25px
+}
+
+.brdr {
+    position: absolute;
+}
+
+.tl {
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+}
+
+.top {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    top: 0;
+    left: 50px;
+    height: 46px;
+    width: 400px
+}
+
+.tr {
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    top: 0;
+    left: 450px;
+    height: 50px;
+    width: 50px;
+}
+
+.r {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    top: 50px;
+    left: 448px;
+    height: 500px;
+    width: 50px;
+}
+
+.br {
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    top: 550px;
+    left: 450px;
+    height: 50px;
+    width: 50px;
+}
+
+.el {
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    top: 548px;
+    left: 348px;
+    height: 50px;
+    width: 100px;
+}
+
+.er {
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    top: 548px;
+    left: 48px;
+    height: 50px;
+    width: 100px;
+}
+
+.bl {
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    top: 550px;
+    left: 0px;
+    height: 50px;
+    width: 50px;
+}
+
+.l {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    top: 48px;
+    left: 0px;
+    height: 502px;
+    width: 46px;
+}
