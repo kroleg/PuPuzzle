@@ -6,7 +6,7 @@
     width: 500px;
     height: 600px;
     position: relative;
-    margin: 50px auto;
+    margin: 5px auto;
 }
 
 #board .inner {
@@ -23,112 +23,79 @@
     border: 2px solid black;
 }
 
+.solo{
+    background-color: #3399CC;
+}
+
+.hor{
+    background-color: #FFCC00;
+}
+
+.vert{
+    background-color: #66CC33;
+}
+
+.target{
+    background-color: #FD5E42;
+}
+
 #board_select {
     width: 500px;
     margin: 10px auto
 }
 
 .button {
-    border: 1px solid black;
+    border: 1px solid #FD5E42;
     float: left;
-    margin: 0px 50px;
+    margin: 0px 10px;
     padding: 15px 20px;
     font-size: 18px;
     cursor: pointer;
-    background: white
+    background: white;
+    border-radius: 20px;
 }
 
 .button.active {
-    background: #ccc
+    background: #FD5E42;
+    color: white;
 }
 
 #reset {
-    padding: 15px 25px
+    padding: 10px;
+    float:right;
+    cursor: pointer;
 }
 
 .brdr {
     position: absolute;
 }
 
-.tl {
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 50px;
-}
+/* board */
 
-.top {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    top: 0;
-    left: 50px;
-    height: 46px;
-    width: 400px
+#border-outer{
+    position: absolute;
+    border:  2px solid black;
+    width: 498px;
+    z-index: 1;
+    height: 598px;
 }
-
-.tr {
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    top: 0;
-    left: 450px;
-    height: 50px;
-    width: 50px;
-}
-
-.r {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    top: 50px;
-    left: 448px;
-    height: 500px;
-    width: 50px;
-}
-
-.br {
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
-    top: 550px;
-    left: 450px;
-    height: 50px;
-    width: 50px;
-}
-
-.el {
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    top: 548px;
-    left: 348px;
-    height: 50px;
-    width: 100px;
-}
-
-.er {
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    top: 548px;
-    left: 48px;
-    height: 50px;
-    width: 100px;
-}
-
-.bl {
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
-    top: 550px;
-    left: 0px;
-    height: 50px;
-    width: 50px;
-}
-
-.l {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+#border-inner{
     top: 48px;
-    left: 0px;
-    height: 502px;
-    width: 46px;
+    left: 48px;
+    position: absolute;
+    border: 2px solid black;
+    width: 398px;
+    z-index: 1;
+    height: 498px;
+}
+#border-exit{
+    left: 148px;
+    z-index: 2;
+    bottom: -2px;
+    position: absolute;
+    background-color: white;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    width: 198px;
+    height: 54px;
 }

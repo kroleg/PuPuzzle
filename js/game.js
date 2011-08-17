@@ -8,42 +8,42 @@ jQuery(function($){
     var sets = {
         set1: [
 //            {type:"vert", left: 1, top: 1},
-            {name:"g1", width:1, height: 2, left: 1, top: 1},
-            {name:"g2", width:1, height: 2, left: 4, top: 1},
-            {name:"g3", width:1, height: 2,left: 1, top: 3},
-            {name:"g4", width:1, height: 2,left: 4, top: 3},
-            {name:"r",  width:2, height: 2,left: 2, top: 1},
-            {name:"y1", width:2, height: 1,left: 2, top: 3},
-            {name:"b1", width:1, height: 1,left: 1, top: 5},
-            {name:"b2", width:1, height: 1,left: 2, top: 4},
-            {name:"b3", width:1, height: 1,left: 3, top: 4},
-            {name:"b4", width:1, height: 1,left: 4, top: 5}
+            {name:"g1", type: 'vert',   left: 1, top: 1},
+            {name:"g2", type: 'vert',   left: 4, top: 1},
+            {name:"g3", type: 'vert',   left: 1, top: 3},
+            {name:"g4", type: 'vert',   left: 4, top: 3},
+            {name:"r",  type: 'target', left: 2, top: 1},
+            {name:"y1", type: 'hor',    left: 2, top: 3},
+            {name:"b1", type: 'solo',   left: 1, top: 5},
+            {name:"b2", type: 'solo',   left: 2, top: 4},
+            {name:"b3", type: 'solo',   left: 3, top: 4},
+            {name:"b4", type: 'solo',   left: 4, top: 5}
         ],
         set2: [
-            {name:"g1", width:1, height: 2,left: 1, top: 1},
-            {name:"g2", width:1, height: 2,left: 4, top: 1},
-            {name:"r",  width:2, height: 2,left: 2, top: 1},
-            {name:"y1", width:2, height: 1,left: 1, top: 3},
-            {name:"y2", width:2, height: 1,left: 3, top: 3},
-            {name:"y3", width:2, height: 1,left: 2, top: 4},
-            {name:"b1", width:1, height: 1,left: 1, top: 4},
-            {name:"b2", width:1, height: 1,left: 1, top: 5},
-            {name:"b3", width:1, height: 1,left: 4, top: 4},
-            {name:"b4", width:1, height: 1,left: 4, top: 5}
+            {name:"g1", type: 'vert',  left: 1, top: 1},
+            {name:"g2", type: 'vert',  left: 4, top: 1},
+            {name:"r",  type: 'target',left: 2, top: 1},
+            {name:"y1", type: 'hor',   left: 1, top: 3},
+            {name:"y2", type: 'hor',   left: 3, top: 3},
+            {name:"y3", type: 'hor',   left: 2, top: 4},
+            {name:"b1", type: 'solo',  left: 1, top: 4},
+            {name:"b2", type: 'solo',  left: 1, top: 5},
+            {name:"b3", type: 'solo',  left: 4, top: 4},
+            {name:"b4", type: 'solo',  left: 4, top: 5}
         ],
         set3: [
-            {name:"g1", width:1, height: 2,left: 1, top: 1},
-            {name:"g2", width:1, height: 2,left: 4, top: 1},
-            {name:"r",  width:2, height: 2,left: 2, top: 1},
-            {name:"y1", width:2, height: 1,left: 2, top: 4},
-            {name:"b1", width:1, height: 1,left: 1, top: 3},
-            {name:"b2", width:1, height: 1,left: 1, top: 4},
-            {name:"b3", width:1, height: 1,left: 1, top: 5},
-            {name:"b4", width:1, height: 1,left: 2, top: 3},
-            {name:"b5", width:1, height: 1,left: 3, top: 3},
-            {name:"b6", width:1, height: 1,left: 4, top: 3},
-            {name:"b7", width:1, height: 1,left: 4, top: 4},
-            {name:"b8", width:1, height: 1,left: 4, top: 5}
+            {name:"g1", type: 'vert',   left: 1, top: 1},
+            {name:"g2", type: 'vert',   left: 4, top: 1},
+            {name:"r",  type: 'target', left: 2, top: 1},
+            {name:"y1", type: 'hor',    left: 2, top: 4},
+            {name:"b1", type: 'solo',   left: 1, top: 3},
+            {name:"b2", type: 'solo',   left: 1, top: 4},
+            {name:"b3", type: 'solo',   left: 1, top: 5},
+            {name:"b4", type: 'solo',   left: 2, top: 3},
+            {name:"b5", type: 'solo',   left: 3, top: 3},
+            {name:"b6", type: 'solo',   left: 4, top: 3},
+            {name:"b7", type: 'solo',   left: 4, top: 4},
+            {name:"b8", type: 'solo',   left: 4, top: 5}
         ]
     };
 
@@ -52,12 +52,6 @@ jQuery(function($){
         slide_duration : 150,
         size :{x:4,y:5},
         point_size : 100,
-        colors: {
-            r: '#FD5E42',
-            g: '#66CC33',
-            b: '#3399CC',
-            y: '#FFCC00'
-        },
         current: 'set1'
     };
 
@@ -82,20 +76,29 @@ jQuery(function($){
         $('#board .inner').html('');
         for (var i in this.figures){
             var slider = this.figures[i];
-            var color;
-            if (slider.height == 1 && slider.width == 1)
-                color = this.colors.b;
-            else if (slider.height == 2 && slider.width == 1)
-                color = this.colors.g;
-            else if (slider.height == 2 && slider.width == 2)
-                color = this.colors.r;
-            else
-                color = this.colors.y;
+            var type;
+            switch (slider.type){
+                case 'solo':
+                    slider.height = 1;
+                    slider.width = 1;
+                    break;
+                case 'hor':
+                    slider.height = 1;
+                    slider.width = 2;
+                    break;
+                case 'vert':
+                    slider.height = 2;
+                    slider.width = 1;
+                    break;
+                case 'target':
+                    slider.height = 2;
+                    slider.width = 2;
+            }
 
             $('<div/>')
                     .attr('id',slider.name)
-                    .attr('class','figure')
-                    .css('background',color)
+                    .attr('class','figure ' + slider.type)
+//                    .css('background',color)
                     .appendTo('#board .inner');
         }
 
