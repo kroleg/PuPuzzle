@@ -76,7 +76,6 @@
     position: absolute;
     border:  2px solid black;
     width: 498px;
-    z-index: 1;
     height: 598px;
 }
 #border-inner{
@@ -85,12 +84,10 @@
     position: absolute;
     border: 2px solid black;
     width: 398px;
-    z-index: 1;
     height: 498px;
 }
 #border-exit{
     left: 148px;
-    z-index: 2;
     bottom: -2px;
     position: absolute;
     background-color: white;
