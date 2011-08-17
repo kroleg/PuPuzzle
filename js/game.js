@@ -204,18 +204,29 @@ jQuery(function($){
 
     var last_x,last_y,figure = null;
 
-    $('.figure').live('mousedown.puzzle',function(e){
-        last_x = e.clientX;
-        last_y = e.clientY;
+    function get_proper_event(e){
+        if(e.originalEvent.touches && e.originalEvent.touches.length) {
+            return e.originalEvent.touches[0];
+        } else if(e.originalEvent.changedTouches && e.originalEvent.changedTouches.length) {
+            return e.originalEvent.changedTouches[0];
+        }
+        return e;
+    }
+
+    $('.figure').live('mousedown touchstart MozTouchDown',function(e){
+        e = get_proper_event(e);
+        last_x = e.pageX;
+        last_y = e.pageY;
         figure = this;
         return false; // prevent from stupid auto-drag
     });
 
-    $('body').bind('mouseup.puzzle',function(e){
-        var min_delta = 50;
+    $('body').bind('mouseup touchend MozTouchRelease',function(e){
+        e = get_proper_event(e);
+        var min_delta = 20;
         if (figure != null){
-            var dx = e.clientX - last_x;
-            var dy = e.clientY - last_y;
+            var dx = e.pageX - last_x;
+            var dy = e.pageY - last_y;
 //            console.log(dx + ' ' + dy);
             if (Math.abs(dx) > min_delta || Math.abs(dy) > min_delta){
                 var dest = null;
